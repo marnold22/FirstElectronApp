@@ -1,0 +1,22 @@
+{
+  "name": "firstelectronapp",
+  "version": "1.0.0",
+  "description": "Shopping List Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marnold22/FirstElectronApp.git"
+  },
+  "author": "Michael Arnold",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marnold22/FirstElectronApp/issues"
+  },
+  "homepage": "https://github.com/marnold22/FirstElectronApp#readme",
+  "dependencies": {
+    "electron": "^8.0.2"
+  }
+}
