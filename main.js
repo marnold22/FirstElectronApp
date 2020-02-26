@@ -1,7 +1,9 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
-const {app, BrowserWindow, Menu} = electron;
+
+const {app, BrowserWindow, Menu, ipcMain} = electron;
+
 let mainWindow;
 let addWindow;
 
@@ -10,7 +12,9 @@ let addWindow;
 // Listen for app to bne ready
 app.on('ready', function() {
   // Create new window
-  mainWindow = new BrowserWindow({});
+  mainWindow = new BrowserWindow({
+    webPreferences: {nodeIntegration: true}
+  });
 
   //Load html into window
   mainWindow.loadURL(url.format({
@@ -38,7 +42,8 @@ function createAddWindow() {
   addWindow = new BrowserWindow({
     width: 300,
     height: 200,
-    title: 'Add Shopping List Item'
+    title: 'Add Shopping List Item',
+    webPreferences: {nodeIntegration: true}
   });
 
   //Load html into window
@@ -53,6 +58,13 @@ function createAddWindow() {
     addWindow = null;
   });
 }
+
+
+//Catch item:add
+ipcMain.on('item:add', function(e, item){
+  mainWindow.webContents.send('item:add', item);
+  addWindow.close();
+});
 
 
 
