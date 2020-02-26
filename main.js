@@ -1,11 +1,11 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
-
 const {app, BrowserWindow, Menu} = electron;
-
 let mainWindow;
 let addWindow;
+
+
 
 // Listen for app to bne ready
 app.on('ready', function() {
@@ -30,6 +30,8 @@ app.on('ready', function() {
   Menu.setApplicationMenu(mainMenu);
 });
 
+
+
 // Handle createAddWindow
 function createAddWindow() {
   // Create new window
@@ -51,6 +53,8 @@ function createAddWindow() {
     addWindow = null;
   });
 }
+
+
 
 // Create menu template
 const mainMenuTemplate = [
@@ -76,3 +80,8 @@ const mainMenuTemplate = [
     ]
   }
 ];
+
+// If mac, add empty object to Menu
+if(process.platform == 'darwin'){
+  mainMenuTemplate.unshift({});
+}
